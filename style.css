@@ -1,16 +1,12 @@
 .sudoku-board { border-spacing: 0; border-collapse: collapse; }
-.sudoku-board>th { padding: .5em; }
-.sudoku-board>td { border: 1px solid; width: 2em; height: 2em; text-align: center;}
-.sudoku-board>.right,
-.sudoku-board>.bottom{
-    border-right: 2px solid;
-}
-th,
-p{ 
-    font-family: Roboto;
-}
-input,
-select{
+.sudoku-board th { padding: .5em; }
+.sudoku-board td { border: 1px solid; width: 2em; height: 2em; text-align: center;}
+.sudoku-board .right { border-right: 2px solid;}
+.sudoku-board .bottom { border-bottom: 2px solid;}
+th { font-family: Roboto; }
+p { font-family: Roboto;; }
+
+input, select {
     width: 8%;
     padding: 0px 0px;
     margin: 8px 0;
@@ -20,16 +16,14 @@ select{
     box-sizing: 0px;
     font-family: Roboto;
 }
-input[type=number]{
-    width: 50px;
-}
-button{
+input[type=number] { width: 50px; }
+button {
     background-color: rgb(156, 156, 156);
     border-radius: 8px;
     width: 10%;
     border-style: none;
 }
-.sudoku-board>td>input{ 
+.sudoku-board td input { 
     width: 90%;
     height: 90%;
     padding: 0%;
