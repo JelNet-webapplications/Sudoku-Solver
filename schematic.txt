@@ -1,0 +1,10 @@
+Input → SolveFunction
+    
+    SolveFunction {
+        Check for each number {
+            Check empty rows & collums
+            Check if group has 1 perforation (8 filled) →
+                yes? → Insert number
+                no? → If 7 (2 possible), try, then fallback, try other spot
+        }
+    }

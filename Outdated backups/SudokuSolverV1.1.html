@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        input, select {
+            width: 8%;
+            padding: 0px 0px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: 0px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        input[type=number] {
+            width: 50px;
+        }
+        button {
+            background-color: rgb(156, 156, 156);
+            border-radius: 8px;
+            width: 10%;
+            border-style: none;
+        }
+        th {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        p {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+    </style>
+
+    <script> 
+        let data = [
+            { x:1, y:1, id:'1a', group:1, value:''},
+            { x:2, y:1, id:'2a', group:1, value:''},
+            { x:3, y:1, id:'3a', group:1, value:''},
+            { x:4, y:1, id:'4a', group:2, value:''},
+            { x:5, y:1, id:'5a', group:2, value:''},  
+            { x:6, y:1, id:'6a', group:2, value:''},
+            { x:7, y:1, id:'7a', group:3, value:''},
+            { x:8, y:1, id:'8a', group:3, value:''},
+            { x:9, y:1, id:'9a', group:3, value:''},
+
+            { x:1, y:2, id:'1b', group:1, value:''},
+            { x:2, y:2, id:'2b', group:1, value:''},
+            { x:3, y:2, id:'3b', group:1, value:''},
+            { x:4, y:2, id:'4b', group:2, value:''},
+            { x:5, y:2, id:'5b', group:2, value:''},
+            { x:6, y:2, id:'6b', group:2, value:''},
+            { x:7, y:2, id:'7b', group:3, value:''},
+            { x:8, y:2, id:'8b', group:3, value:''},
+            { x:9, y:2, id:'9b', group:3, value:''},
+
+            { x:1, y:3, id:'1c', group:1, value:''},
+            { x:2, y:3, id:'2c', group:1, value:''},
+            { x:3, y:3, id:'3c', group:1, value:''},
+            { x:4, y:3, id:'4c', group:2, value:''},
+            { x:5, y:3, id:'5c', group:2, value:''},
+            { x:6, y:3, id:'6c', group:2, value:''},
+            { x:7, y:3, id:'7c', group:3, value:''},
+            { x:8, y:3, id:'8c', group:3, value:''},
+            { x:9, y:3, id:'9c', group:3, value:''},
+
+            { x:1, y:4, id:'1d', group:4, value:''},
+            { x:2, y:4, id:'2d', group:4, value:''},
+            { x:3, y:4, id:'3d', group:4, value:''},
+            { x:4, y:4, id:'4d', group:5, value:''},
+            { x:5, y:4, id:'5d', group:5, value:''},
+            { x:6, y:4, id:'6d', group:5, value:''},
+            { x:7, y:4, id:'7d', group:6, value:''},
+            { x:8, y:4, id:'8d', group:6, value:''},
+            { x:9, y:4, id:'9d', group:6, value:''},
+
+            { x:1, y:5, id:'1e', group:4, value:''},
+            { x:2, y:5, id:'2e', group:4, value:''},
+            { x:3, y:5, id:'3e', group:4, value:''},
+            { x:4, y:5, id:'4e', group:5, value:''},
+            { x:5, y:5, id:'5e', group:5, value:''},
+            { x:6, y:5, id:'6e', group:5, value:''},
+            { x:7, y:5, id:'7e', group:6, value:''},
+            { x:8, y:5, id:'8e', group:6, value:''},
+            { x:9, y:5, id:'9e', group:6, value:''},
+
+            { x:1, y:6, id:'1f', group:4, value:''},
+            { x:2, y:6, id:'2f', group:4, value:''},
+            { x:3, y:6, id:'3f', group:4, value:''},
+            { x:4, y:6, id:'4f', group:5, value:''},
+            { x:5, y:6, id:'5f', group:5, value:''},
+            { x:6, y:6, id:'6f', group:5, value:''},
+            { x:7, y:6, id:'7f', group:6, value:''},
+            { x:8, y:6, id:'8f', group:6, value:''},
+            { x:9, y:6, id:'9f', group:6, value:''},
+
+            { x:1, y:7, id:'1g', group:7, value:''},
+            { x:2, y:7, id:'2g', group:7, value:''},
+            { x:3, y:7, id:'3g', group:7, value:''},
+            { x:4, y:7, id:'4g', group:8, value:''},
+            { x:5, y:7, id:'5g', group:8, value:''},
+            { x:6, y:7, id:'6g', group:8, value:''},
+            { x:7, y:7, id:'7g', group:9, value:''},
+            { x:8, y:7, id:'8g', group:9, value:''},
+            { x:9, y:7, id:'9g', group:9, value:''},
+
+            { x:1, y:8, id:'1h', group:7, value:''},
+            { x:2, y:8, id:'2h', group:7, value:''},
+            { x:3, y:8, id:'3h', group:7, value:''},
+            { x:4, y:8, id:'4h', group:8, value:''},
+            { x:5, y:8, id:'5h', group:8, value:''},
+            { x:6, y:8, id:'6h', group:8, value:''},
+            { x:7, y:8, id:'7h', group:9, value:''},
+            { x:8, y:8, id:'8h', group:9, value:''},
+            { x:9, y:8, id:'9h', group:9, value:''},
+
+            { x:1, y:9, id:'1i', group:7, value:''},
+            { x:2, y:9, id:'2i', group:7, value:''},
+            { x:3, y:9, id:'3i', group:7, value:''},
+            { x:4, y:9, id:'4i', group:8, value:''},
+            { x:5, y:9, id:'5i', group:8, value:''},
+            { x:6, y:9, id:'6i', group:8, value:''},
+            { x:7, y:9, id:'7i', group:9, value:''},
+            { x:8, y:9, id:'8i', group:9, value:''},
+            { x:9, y:9, id:'9i', group:9, value:''}
+        ]
+
+        function UpdateTable() {
+            for(let i=0;i<data.length;i++) {
+                document.getElementById(data[i].id).innerHTML = data[i].value
+                if(data[i].value) {
+                    document.getElementById(data[i].id).style.background = 'gray'
+                } else if(data[i].ticked) {
+                    document.getElementById(data[i].id).style.background = 'red'
+                } else {
+                    document.getElementById(data[i].id).style.background = 'none'
+                }
+            }
+        }
+
+        function HTMLIDtoOBJID(Functionid) {
+            for(let i=0;i<data.length;i++) {
+                if(data[i].id==Functionid) {
+                    return i
+                }
+            }
+        }
+
+        function LoadFunction() {
+            console.log("Loading default sudoku!");
+            data[HTMLIDtoOBJID('9a')].value='1'
+            data[HTMLIDtoOBJID('6b')].value='1'
+            data[HTMLIDtoOBJID('3c')].value='1'
+            data[HTMLIDtoOBJID('2d')].value='1'
+            data[HTMLIDtoOBJID('4e')].value='1'
+            data[HTMLIDtoOBJID('5i')].value='1'
+            data[HTMLIDtoOBJID('3b')].value='2'
+            data[HTMLIDtoOBJID('7c')].value='2'
+            data[HTMLIDtoOBJID('7c')].value='2'
+            data[HTMLIDtoOBJID('5d')].value='2'
+            data[HTMLIDtoOBJID('8f')].value='2'
+            data[HTMLIDtoOBJID('1i')].value='2'
+            data[HTMLIDtoOBJID('1e')].value='3'
+            data[HTMLIDtoOBJID('3g')].value='3'
+            data[HTMLIDtoOBJID('6h')].value='3'
+            data[HTMLIDtoOBJID('5e')].value='4'
+            data[HTMLIDtoOBJID('9f')].value='4'
+            data[HTMLIDtoOBJID('7g')].value='4'
+            data[HTMLIDtoOBJID('1a')].value='5'
+            data[HTMLIDtoOBJID('8c')].value='5'
+            data[HTMLIDtoOBJID('6e')].value='5'
+            data[HTMLIDtoOBJID('2g')].value='5'
+            data[HTMLIDtoOBJID('7h')].value='5'
+            data[HTMLIDtoOBJID('4i')].value='5'
+            data[HTMLIDtoOBJID('6a')].value='6'
+            data[HTMLIDtoOBJID('7b')].value='6'
+            data[HTMLIDtoOBJID('9e')].value='6'
+            data[HTMLIDtoOBJID('2f')].value='6'
+            data[HTMLIDtoOBJID('8g')].value='6'
+            data[HTMLIDtoOBJID('4b')].value='7'
+            data[HTMLIDtoOBJID('2c')].value='7'
+            data[HTMLIDtoOBJID('8d')].value='7'
+            data[HTMLIDtoOBJID('9i')].value='7'
+            data[HTMLIDtoOBJID('5a')].value='8'
+            data[HTMLIDtoOBJID('3h')].value='8'
+            data[HTMLIDtoOBJID('1d')].value='9'
+            data[HTMLIDtoOBJID('5f')].value='9'
+            data[HTMLIDtoOBJID('4h')].value='9'
+            UpdateTable();
+        }
+
+        function TextFunction(button) {
+            let cell = document.getElementById("inputCell").value;
+            let cellvalue = document.getElementById("inputValue").value;
+            document.getElementById(cell).innerHTML = cellvalue
+            //Update values in objects array
+            for(let i=0;i<data.length;i++) {
+                if(data[i].id == cell) {
+                    data[i].value = cellvalue
+                }
+            }
+            UpdateTable();
+        }
+        function SolveFunction() {
+            for(let n=1;n<=9;n++) {
+                resetTicks(n);
+                
+                console.log("n: " + n);
+                //Check all ticked cells for number round
+                for(let i=0;i<data.length;i++) {
+                    if(data[i].value == n) {
+                        for(j=0;j<data.length;j++) {
+                            //Check for horizontal match with N number
+                            if(data[j].x==data[i].x) {
+                                data[j].ticked=true
+                                //document.getElementById(data[j].id).style.background = 'red'
+                            }
+                            //Check for vertical match with N number
+                            if(data[j].y==data[i].y) {
+                                data[j].ticked=true
+                                //document.getElementById(data[j].id).style.background = 'red'
+                            }
+                            //Check for group match with N number
+                            if(data[j].group==data[i].group) {
+                                data[j].ticked=true
+                                //document.getElementById(data[j].id).style.background = 'red'
+                            }
+                        }
+                    //Check for any other filled cells
+                    } else if(data[i].value) {
+                        data[i].ticked=true
+                        //document.getElementById(data[i].id).style.background = '#b30000'
+                    }
+                }
+                //Check for 1 empty in horizontal X axis
+                let Xticked = 0
+                for(let ky=1;ky<=9;ky++) {
+                    Xticked=0
+                    for (let l=0;l<data.length;l++) {
+                        if(data[l].y==ky && data[l].ticked) {
+                            Xticked++
+                        }
+                    }
+                    if(Xticked==8) {
+                        console.log("Detected horizontal spot for n=" + n + " at y=" + ky);
+                        //Locate coordinates & insert n
+                        for(let kyX=1;kyX<=9;kyX++) {
+                            if(!data[ky].Xticked) {
+                                for(let qq=0;qq<data.length;qq++) {
+                                    if(data[qq].y==ky && data[qq].x==kyX && !data[qq].ticked) {
+                                        console.log("Checking cell: " + data[qq].id)
+                                        if(groupPerforationCheck(data[qq].group)) {
+                                            console.log(`Placing ${n} at cell ${data[qq].id}`);
+                                            data[qq].value = n
+                                            data[qq].ticked=true
+                                            UpdateTable();
+                                            resetTicks(n)
+                                            setTimeout(SolveFunction,50);
+                                            return;
+                                        } else {
+                                            console.log("Group is not filled.")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Xticked=0
+                }
+                //Check for 1 empty in vertical Y axis
+                let Yticked = 0
+                for(let kx=1;kx<=9;kx++) {
+                    Yticked=0
+                    for (let l=0;l<data.length;l++) {
+                        if(data[l].x==kx && data[l].ticked) {
+                            Yticked++
+                        }
+                    }
+                    if(Yticked==8) {
+                        console.log("Detected vertical spot for n=" + n + " at x=" + kx)
+                        //Locate coordinates & insert n
+                        for(let kxY=1;kxY<=9;kxY++) {
+                            if(!data[kx].Yticked) {
+                                for(let qq=0;qq<data.length;qq++) {
+                                    if(data[qq].x==kx && data[qq].y==kxY && !data[qq].ticked) {
+                                        console.log("Checking cell: " + data[qq].id)
+                                        if(groupPerforationCheck(data[qq].group)) {
+                                            console.log(`Placing ${n} at cell ${data[qq].id}`);
+                                            data[qq].value = n
+                                            data[qq].ticked=true
+                                            UpdateTable();
+                                            setTimeout(SolveFunction,50);
+                                            return;
+                                        } else {
+                                            console.log("Group is not filled.")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Yticked=0
+                }
+            }
+        }
+        function resetTicks(n) {
+        //Reset checked for stage n
+            for(let z=0;z<data.length;z++) {
+                data[z].ticked=false
+                data[z].Xticked=false
+                data[z].Yticked=false
+                UpdateTable();
+            }
+            console.log("Finished stage " + n)
+        }
+
+        //Check for perforation in group
+        function groupPerforationCheck(group) {
+            let groupTicks = 0
+            let CellID
+            console.log("recieved perforation check request at group: " + group);
+            for(let i=0; i<data.length;i++) {
+                if(data[i].value && data[i].group == group) {
+                    groupTicks++
+                    //console.log("Group ticks (.value): " + groupTicks);
+                    cellID = i
+                } else if(data[i].ticked && data[i].group == group) {
+                    groupTicks++
+                    //console.log("Group ticks (.ticked): " + groupTicks);
+                    cellID = i
+                }
+                if(groupTicks==8) {
+                    console.log("Perforation in group found! ID: " + cellID);
+                    return cellID;
+                }
+            }
+        }
+    </script>
+
+    <head>
+        <title>SudokuSolver</title>
+        <meta charset="UTF-8">
+        <style>
+            .sudoku-board { border-spacing: 0; border-collapse: collapse; }
+            .sudoku-board th { padding: .5em; }
+            .sudoku-board td { border: 1px solid; width: 2em; height: 2em; text-align: center;}
+            .sudoku-board .right { border-right: 2px solid;}
+            .sudoku-board .bottom { border-bottom: 2px solid;}            
+        </style>
+    </head>
+    <body>
+        <input type="text" id="inputCell" value="Cell: 4c">
+        <input type="number" id="inputValue" min="1" max="9" onkeyup="TextFunction()" onclick="TextFunction()">
+        <button onclick="TextFunction(true)">Process</button>
+        <button onclick="LoadFunction()">Load demo</button>
+        <button onclick="SolveFunction()">Solve</button>
+        <table class="sudoku-board">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                </tr>
+                <tr>
+                    <th>a</th>
+                    <td id="1a"></td>
+                    <td id="2a"></td>
+                    <td id="3a" class="right"></td>
+                    <td id="4a"></td>
+                    <td id="5a"></td>
+                    <td id="6a" class="right"></td>
+                    <td id="7a"></td>
+                    <td id="8a"></td>
+                    <td id="9a"></td>
+                </tr>
+                <tr>
+                    <th>b</th>
+                    <td id="1b"></td>
+                    <td id="2b"></td>
+                    <td id="3b" class="right"></td>
+                    <td id="4b"></td>
+                    <td id="5b"></td>
+                    <td id="6b" class="right"></td>
+                    <td id="7b"></td>
+                    <td id="8b"></td>
+                    <td id="9b"></td>
+                </tr>
+                <tr>
+                    <th>c</th>
+                    <td id="1c" class="bottom"></td>
+                    <td id="2c" class="bottom"></td>
+                    <td id="3c" class="bottom right"></td>
+                    <td id="4c" class="bottom"></td>
+                    <td id="5c" class="bottom"></td>
+                    <td id="6c" class="bottom right"></td>
+                    <td id="7c" class="bottom"></td>
+                    <td id="8c" class="bottom"></td>
+                    <td id="9c" class="bottom"></td>
+                </tr>
+                <tr>
+                    <th>d</th>
+                    <td id="1d"></td>
+                    <td id="2d"></td>
+                    <td id="3d" class="right"></td>
+                    <td id="4d"></td>
+                    <td id="5d"></td>
+                    <td id="6d" class="right"></td>
+                    <td id="7d"></td>
+                    <td id="8d"></td>
+                    <td id="9d"></td>
+                </tr>
+                <tr>
+                    <th>e</th>
+                    <td id="1e"></td>
+                    <td id="2e"></td>
+                    <td id="3e" class="right"></td>
+                    <td id="4e"></td>
+                    <td id="5e"></td>
+                    <td id="6e" class="right"></td>
+                    <td id="7e"></td>
+                    <td id="8e"></td>
+                    <td id="9e"></td>
+                </tr>
+                <tr>
+                    <th>f</th>
+                    <td id="1f" class="bottom"></td>
+                    <td id="2f" class="bottom"></td>
+                    <td id="3f" class="bottom right"></td>
+                    <td id="4f" class="bottom"></td>
+                    <td id="5f" class="bottom"></td>
+                    <td id="6f" class="bottom right"></td>
+                    <td id="7f" class="bottom"></td>
+                    <td id="8f" class="bottom"></td>
+                    <td id="9f" class="bottom"></td>
+                </tr>
+                <tr>
+                    <th>g</th>
+                    <td id="1g"></td>
+                    <td id="2g"></td>
+                    <td id="3g" class="right"></td>
+                    <td id="4g"></td>
+                    <td id="5g"></td>
+                    <td id="6g" class="right"></td>
+                    <td id="7g"></td>
+                    <td id="8g"></td>
+                    <td id="9g"></td>
+                </tr>
+                <tr>
+                    <th>h</th>
+                    <td id="1h"></td>
+                    <td id="2h"></td>
+                    <td id="3h" class="right"></td>
+                    <td id="4h"></td>
+                    <td id="5h"></td>
+                    <td id="6h" class="right"></td>
+                    <td id="7h"></td>
+                    <td id="8h"></td>
+                    <td id="9h"></td>
+                </tr>
+                <tr>
+                    <th>i</th>
+                    <td id="1i"></td>
+                    <td id="2i"></td>
+                    <td id="3i" class="right"></td>
+                    <td id="4i"></td>
+                    <td id="5i"></td>
+                    <td id="6i" class="right"></td>
+                    <td id="7i"></td>
+                    <td id="8i"></td>
+                    <td id="9i"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
