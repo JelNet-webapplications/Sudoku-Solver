@@ -1,46 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-NL">
     <head>
-        <title>Sudoku Solver</title>
         <meta charset="UTF-8">
-
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sudoku Solver</title>
         <script src="SudokuAlgorithm.js"></script>
-
-        <style>
-            .sudoku-board { border-spacing: 0; border-collapse: collapse; }
-            .sudoku-board th { padding: .5em; }
-            .sudoku-board td { border: 1px solid; width: 2em; height: 2em; text-align: center;}
-            .sudoku-board .right { border-right: 2px solid;}
-            .sudoku-board .bottom { border-bottom: 2px solid;}
-            th { font-family: Roboto; }
-            p { font-family: Roboto;; }
-            
-            input, select {
-                width: 8%;
-                padding: 0px 0px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                box-sizing: 0px;
-                font-family: Roboto;
-            }
-            input[type=number] { width: 50px; }
-            button {
-                background-color: rgb(156, 156, 156);
-                border-radius: 8px;
-                width: 10%;
-                border-style: none;
-            }
-            .sudoku-board td input { 
-                width: 90%;
-                height: 90%;
-                padding: 0%;
-                border: 0%;
-                border-style: none;
-                text-align: center;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <input type="text" id="inputCell" value="Cell: 4c">
@@ -48,9 +14,8 @@
         <button onclick="TextFunction('sudokuCell')">Process</button>
         <button onclick="LoadFunction()">Load demo</button>
         <button onclick="SolveFunction()">Solve</button>
-	<button onclick="window.location.reload();">Reset</button>
+	    <button onclick="window.location.reload();">Reset</button>
         <table class="sudoku-board">
-
             <!-- todo: Add input to <th> -->
             <tbody>
                 <tr>
